@@ -1,0 +1,11 @@
+numpy 
+pandas
+scikit-learn
+imbalanced-learn
+bentoml
+pydantic
+requests
+pyjwt
+pathlib 
+joblib
+flake8

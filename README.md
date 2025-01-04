@@ -1,28 +1,42 @@
+<a name="readme-top"></a>
+<div align="center">
+
+<a href="" target="_blank" title="Go to  website">
+<img width="196px" alt="Examen BentoML" src="https://www.inovex.de/wp-content/uploads/mlops-mit-BentoML-1500x880.png">
+</a>
+
 # Examen BentoML
 
-Ce repertoire contient l'architecture basique afin de rendre l'évaluation pour l'examen BentoML.
+Complete pipeline with BentoML for predict the chance of admission of a student in a university.
 
-Vous êtes libres d'ajouter d'autres dossiers ou fichiers si vous jugez utile de le faire.
+</div>
 
-Voici comment est construit le dossier de rendu de l'examen:
+<div align="center"><h4><a href="#-table-of-contents">️Table of Contents</a> • <a href="#-setup">⚙ ️Setup</a> • <a href="#-about-the-author">👨🏻‍ About the Author</a></h4></div>
 
-```bash       
-├── examen_bentoml          
-│   ├── data       
-│   │   ├── processed      
-│   │   └── raw           
-│   ├── models      
-│   ├── src       
-│   └── README.md
-```
+## ️Table of Contents
+ <details>
+<summary>Open Contents</summary>
 
-Afin de pouvoir commencer le projet vous devez suivre les étapes suivantes:
+- [Examen BentoML](#examen-bentoml)
+  - [⚙ ️Setup](#-setup)
+    - [Installation](#installation)
+  - [👨🏻‍ About the Author](#-about-the-author)
+</details>
 
-- Forker le projet sur votre compte github
+## ⚙ ️Setup
 
-- Cloner le projet sur votre machine
+### Installation
 
-- Récuperer le jeu de données à partir du lien suivant: [Lien de téléchargement]( https://datascientest.s3-eu-west-1.amazonaws.com/examen_bentoml/admissions.csv)
+To install this project, follow these steps:
+
+1. pip3 install -r requirements.txt
 
 
-Bon travail!
+## 👨🏻‍ About the Author
+
+**Heuzef**
+
+This project was created by Heuzef. Connect with me on [heuzef.com](https://heuzef.com) to learn more about my projects and professional background.
+
+
+<p align="right"><a href="#readme-top">Top ⬆️</a></p>

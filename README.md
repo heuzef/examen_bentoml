@@ -25,12 +25,26 @@ Complete pipeline with BentoML for predict the chance of admission of a student 
 
 ## ⚙ ️Setup
 
-### Installation
+### Setup venv
+<code>
+  sudo apt install python3.8-venv
+  python3 -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+</code>
 
-To install this project, follow these steps:
+### BentoML
+<code>
+  bentoml serve service:examen_bentoml --reload
+  bentoml build
+  bentoml containerize examen_bentoml:latest
+</code>
 
-1. pip3 install -r requirements.txt
-
+### Docker
+<code>
+docker run -p 3000:3000 examen_bentoml:latest
+docker save -o bento_image.tar examen_bentoml
+</code>
 
 ## 👨🏻‍ About the Author
 

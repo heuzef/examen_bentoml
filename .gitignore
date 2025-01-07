@@ -1,4 +1,6 @@
+/clean_data.csv
 .DS_Store
 .DS_Store?
+.venv/
 /venv
-/clean_data.csv
+*.ipynb

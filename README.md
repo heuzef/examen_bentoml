@@ -35,6 +35,7 @@ Complete pipeline with BentoML for predict the chance of admission of a student 
 
 ### BentoML
 <code>
+  alias bentoml='/home/ubuntu/.local/bin/bentoml'
   bentoml serve service:examen_bentoml --reload
   bentoml build
   bentoml containerize examen_bentoml:latest

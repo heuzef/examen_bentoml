@@ -43,17 +43,16 @@ python3 src/train_model.py
 bentoml models list
 ```
 
-### BentoML
+### Create container with BentoML
 ```bash
-  alias bentoml='/home/ubuntu/.local/bin/bentoml'
-  bentoml serve service --reload
   bentoml build
   bentoml containerize service:latest
 ```
 
 ### Docker
 ```bash
-docker run -p 3000:3000 service:latest
+bentoml list # get the tag
+docker run --rm -p 3000:3000 service:<tag>
 ```
 
 ### Try

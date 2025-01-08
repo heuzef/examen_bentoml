@@ -1,18 +1,15 @@
-service:
-  name: admissions_model
-  version: 1.0.0
-
+service: "src.service"
 labels:
   owner: "Heuzef"
   project: "Admissions Prediction"
-
+  description: "Examen BentoML DS"
 docker:
   dockerfile_template: "./Dockerfile.template"
   base_image: python:3.8-slim
-
 include:
+  - src/
+  - data/
   - '*.py'
-
 python:
     packages:
       - numpy

@@ -4,3 +4,4 @@
 .venv/
 /venv
 *.ipynb
+__pycache__/

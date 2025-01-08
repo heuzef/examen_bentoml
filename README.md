@@ -40,7 +40,6 @@ Python, Docker and BentoML is needed. Please install before use. So set the pyth
 ```python  
 python3 src/prepare_data.py
 python3 src/train_model.py
-bentoml models list
 ```
 
 ### Create container with BentoML

@@ -4,20 +4,22 @@ from bentoml.io import NumpyNdarray, JSON
 from pydantic import BaseModel, Field
 from starlette.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
-import jwt
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+import base64
 import time
 from datetime import datetime, timedelta, timezone
 
-# Secret key and algorithm for JWT authentication
-JWT_SECRET_KEY = "S3CR3TJWTK3Y"
-JWT_ALGORITHM = "HS256"
+security = HTTPBasic()
 
 # User credentials for authentication
 USERS = {
     "admin": "psw",
     "bentoml": "bentoml"
 }
+
+app = FastAPI()
+security = HTTPBasic()
 
 # Pydantic model to validate input data
 class InputModel(BaseModel):
@@ -29,56 +31,22 @@ class InputModel(BaseModel):
     CGPA: float
     Research: int
 
-class JWTAuthMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request, call_next):
-        # Secure only the predict endpoint
-        if request.url.path == "/predict":
-            token = request.headers.get("Authorization")
-            if not token:
-                return JSONResponse(status_code=401, content={"detail": "Missing authentication token"})
-            try:
-                token = token.split()[1]  # Remove 'Bearer ' prefix
-                payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
-            except jwt.ExpiredSignatureError:
-                return JSONResponse(status_code=401, content={"detail": "Token has expired"})
-            except jwt.InvalidTokenError:
-                return JSONResponse(status_code=401, content={"detail": "Invalid token"})
-            
-            request.state.user = payload.get("sub")
-
-        response = await call_next(request)
-        return response
-
-# Function to create a JWT token
-def create_jwt_token(user_id: str):
-    expiration = datetime.utcnow() + timedelta(hours=4)
-    payload = {
-        "sub": user_id,
-        "exp": int(expiration.timestamp()) # Convert datetime to Unix timestamp
-    }
-    token = jwt.encode(payload, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
-    return token
-
 # Get the model from the Model Store
 model_runner = bentoml.sklearn.get("admissions_model:latest").to_runner()
 
 # Create a service API
 service = bentoml.Service("service", runners=[model_runner])
 
-# Add the JWTAuthMiddleware to the service
-service.add_asgi_middleware(JWTAuthMiddleware)
-
-# Login endpoint to get JWT token
+# Login endpoint
 @service.api(input=JSON(), output=JSON(), route='/login')
-def login(credentials: dict) -> dict:
+async def login(credentials: dict) -> dict:
     username = credentials.get("username")
     password = credentials.get("password")
 
     if username in USERS and USERS[username] == password:
-        token = create_jwt_token(username)
-        return {"token": token}
+        return {"message": f"Hello, {username}!"}
     else:
-        return JSONResponse(status_code=401, content={"detail": "Invalid credentials"})
+        return JSONResponse(status_code=401)
 
 # Create an API endpoint for the service
 @service.api(

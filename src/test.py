@@ -19,8 +19,7 @@ login_response = requests.post(
 
 # Check if the login was successful
 if login_response.status_code == 200:
-    token = login_response.json().get("token")
-    print("Token JWT obtenu:", token)
+    print("Authentification :", login_response)
 
     # Data to be sent to the prediction endpoint
     data = {
@@ -37,12 +36,11 @@ if login_response.status_code == 200:
     response = requests.post(
         predict_url,
         headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {token}"
+            "Content-Type": "application/json"
         },
         json=data
     )
 
-    print("Réponse de l'API de prédiction:", response.text)
+    print("Réponse de l'API de prédiction :", response.text)
 else:
-    print("Erreur lors de la connexion:", login_response.text)
+    print("Erreur lors de la connexion :", login_response.text)

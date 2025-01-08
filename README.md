@@ -58,7 +58,7 @@ docker run --rm -p 3000:3000 service:<tag>
 ### Tests
 
 ```python  
-python3 -m pytest tests/pytest.py
+python3 -m pytest tests/test_api.py
 python3 tests/predict.py
 ```
 

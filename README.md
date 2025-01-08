@@ -19,39 +19,53 @@ Complete pipeline with BentoML for predict the chance of admission of a student 
 
 - [Examen BentoML](#examen-bentoml)
   - [⚙ ️Setup](#-setup)
-    - [Installation](#installation)
   - [👨🏻‍ About the Author](#-about-the-author)
 </details>
 
 ## ⚙ ️Setup
 
-### Setup venv
-<code>
+### Setup requirements
+
+Python, Docker and BentoML is needed. Please install before use. So set the python env :
+
+```bash
   sudo apt install python3.8-venv
   python3 -m venv .venv
   source .venv/bin/activate
   pip install -r requirements.txt
-</code>
+```
+
+### Prepare data and load your model
+
+```python  
+python3 src/prepare_data.py
+python3 src/train_model.py
+bentoml models list
+```
 
 ### BentoML
-<code>
+```bash
   alias bentoml='/home/ubuntu/.local/bin/bentoml'
   bentoml serve service --reload
   bentoml build
   bentoml containerize service:latest
-</code>
+```
 
 ### Docker
-<code>
+```bash
 docker run -p 3000:3000 service:latest
-docker save -o bento_image.tar service
-</code>
+```
+
+### Try
+
+```python  
+python3 src/test.py
+```
 
 ## 👨🏻‍ About the Author
 
 **Heuzef**
 
 This project was created by Heuzef. Connect with me on [heuzef.com](https://heuzef.com) to learn more about my projects and professional background.
-
 
 <p align="right"><a href="#readme-top">Top ⬆️</a></p>

@@ -55,10 +55,11 @@ bentoml list # get the tag
 docker run --rm -p 3000:3000 service:<tag>
 ```
 
-### Try
+### Tests
 
 ```python  
-python3 src/test.py
+python3 -m pytest tests/pytest.py
+python3 tests/predict.py
 ```
 
 ## 👨🏻‍ About the Author

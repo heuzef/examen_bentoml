@@ -12,3 +12,4 @@ joblib
 flake8
 fastapi
 datetime
+pytest
